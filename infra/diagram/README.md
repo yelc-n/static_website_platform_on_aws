@@ -1,6 +1,6 @@
 ## Architecture
 
-![Static Website Architecture](docs/architecture.png)
+![Static Website Architecture](diagram.png)
 
 Architecture for a static website hosted on Amazon S3,
 served globally via CloudFront, secured with TLS using ACM,
