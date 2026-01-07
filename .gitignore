@@ -1,0 +1,35 @@
+#############################################
+# Terraform local state and cache
+#############################################
+
+.terraform/
+**/.terraform/*
+
+terraform.tfstate
+terraform.tfstate.backup
+**/terraform.tfstate
+**/terraform.tfstate.backup
+**/terraform.tfstate.*
+
+#############################################
+# Variable files with real values
+#############################################
+
+terraform.tfvars
+**/terraform.tfvars
+
+#############################################
+# Crash logs
+#############################################
+
+crash.log
+
+#############################################
+# Editor / OS files
+#############################################
+
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
