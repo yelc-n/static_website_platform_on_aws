@@ -134,7 +134,7 @@ Possible improvements:
 * CloudFront access logs
 * AWS WAF
 * CI/CD pipeline
-* Multiple environments (stg/prod)
+* ~~Multiple environments (stg/prod)~~ (added briefly after pushing)
 
 ---
 
