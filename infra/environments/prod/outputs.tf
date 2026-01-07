@@ -23,3 +23,20 @@ output "cost_env_tag" {
   description = "Cost environment tag value"
   value       = local.cost_env
 }
+
+output "cloudfront_domain_name" {
+  description = "The domain name used by CloudFront"
+  value       = module.cloudfront.cloudfront_domain_name
+}
+
+output "configured_domains" {
+  value = local.domains
+}
+
+output "frontend_bucket_name" {
+  value = module.frontend.front_bucket_name
+}
+
+output "acm_certificate_status" {
+  value = module.route53_certs.certificate_status
+}

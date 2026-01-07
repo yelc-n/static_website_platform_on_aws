@@ -38,9 +38,3 @@ variable "sub_domain_names" {
   type        = list(string)
   default     = []
 }
-
-# Human-readable Route53 zone name; used to identify the hosted zone.
-variable "route53_zone_name" {
-  description = "The name of the Hosted Zone on Route 53"
-  type        = string
-} 
