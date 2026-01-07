@@ -1,5 +1,10 @@
 # Static Website Platform on AWS (Terraform)
 
+![Terraform](https://img.shields.io/badge/Terraform-%3E%3D1.5-blueviolet)
+![AWS](https://img.shields.io/badge/AWS-Cloud-orange)
+![IaC](https://img.shields.io/badge/IaC-Terraform-blue)
+
+
 ## Overview
 
 This project provides a **production-ready, cost-aware template** for hosting a **static website** on AWS using **Amazon S3 + Amazon CloudFront** with **HTTPS** and **custom domains**, fully automated with **Terraform**.
