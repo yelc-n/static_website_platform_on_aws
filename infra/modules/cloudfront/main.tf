@@ -32,6 +32,14 @@ resource "aws_cloudfront_distribution" "cdn_distro" {
 
     # Redirect HTTP requests to HTTPS
     viewer_protocol_policy = "redirect-to-https"
+
+    forwarded_values {
+      query_string = false
+
+      cookies {
+        forward = "none"
+      }
+    }
   }
 
   restrictions {
@@ -44,7 +52,8 @@ resource "aws_cloudfront_distribution" "cdn_distro" {
 
   viewer_certificate {
     # The distribution uses the provided ACM certificate ARN (or CloudFront default if appropriate)
-    cloudfront_default_certificate = var.certificate_arn
+    acm_certificate_arn            = var.certificate_arn
     ssl_support_method             = "sni-only"
+    minimum_protocol_version       = "TLSv1.2_2021"
   }
 }

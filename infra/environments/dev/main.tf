@@ -28,6 +28,7 @@ module "cloudfront" {
       for subdomain in var.sub_domain_names : "${subdomain}.${var.root_domain_name}"
     ]
   )
+  depends_on = [ module.route53_certs ]
 }
 
 # Resource: aws_s3_bucket_policy.frontend_bucket_policy
@@ -59,15 +60,19 @@ resource "aws_s3_bucket_policy" "frontend_bucket_policy" {
 # Resource: aws_route53_zone.primary_zone
 # - Purpose: Reference (or create) the Route53 hosted zone for the site's domain in this environment.
 # - This zone is used to create DNS records and to validate ACM certificates via DNS.
-resource "aws_route53_zone" "primary_zone" {
-  name    = var.route53_zone_name
-  zone_id = var.primary_zone_id
-}
+# resource "aws_route53_zone" "primary_zone" {
+#   name    = var.route53_zone_name
+#   zone_id = var.primary_zone_id
+# }
 
 # Module: route53_certs
 # - Purpose: Request ACM certificates for the root domain and subdomains and perform DNS validation
 #   using the provided Route53 hosted zone.
 module "route53_certs" {
+
+  providers = {
+    aws = aws.us_east_1
+  }
   source           = "../../modules/acm"
   host_zone_id     = var.primary_zone_id
   root_domain_name = var.root_domain_name
@@ -88,3 +93,15 @@ resource "aws_route53_record" "cdn_records" {
     evaluate_target_health = false
   }
 }
+
+# module "route53_acm_validation" {
+#   source             = "../../modules/route53-acm-validation"
+#   
+#   providers = { 
+#     aws = aws.us_east_1 
+#   }        
+#
+#   route53_zone_id    = var.primary_zone_id
+#   validation_options = module.route53_certs.domain_validation_options
+#   certificate_arn    = module.route53_certs.certificate_arn
+#}
